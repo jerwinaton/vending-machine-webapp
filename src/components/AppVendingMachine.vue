@@ -75,6 +75,8 @@ const cartStore = useCartStore();
 
 const addToCart = (product: Product, quantity: number) => {
   cartStore.addToCart(product, quantity); // call addToCart action from the cart store
+  // close the modal
+  closeModal();
 };
 
 const removeFromCart = (index: number) => {
