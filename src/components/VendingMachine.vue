@@ -2,7 +2,7 @@
   <div
     class="place-self-center min-w-full sm:min-w-[36rem] max-w-sm sm:max-w-xl md:min-w-[42rem] md:max-w-2xl mx-2 rounded-xl border shadow overflow-hidden flex flex-col"
   >
-    <header class="px-2 md:px-4 py-5 vm-header h-14 bg-blue-500 text-white">
+    <header class="px-2 md:px-4 py-5 vm-header h-14 bg-primary text-white">
       <h1 class="text-xl font-bold">Vending Machine</h1>
     </header>
 
@@ -28,7 +28,7 @@
                 :class="[
                   'text-center border rounded-xl py-1 px-2 sm:p-3 w-fit sm:w-full h-fit hover:bg-gray-100 text-black flex flex-col items-center',
                   selectedCategory == category.id
-                    ? 'bg-gray-100  border-black/20'
+                    ? 'bg-gray-100  border-primary'
                     : 'bg-white ',
                 ]"
               >

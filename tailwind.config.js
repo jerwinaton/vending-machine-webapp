@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#004AAD",
+        primary: "#0080FF",
       },
       backgroundImage: {
         "vm-header": "url('./src/assets/images/skin_header.png')",
