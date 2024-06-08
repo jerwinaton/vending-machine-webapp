@@ -7,5 +7,5 @@
 </template>
 
 <script setup lang="ts">
-import VendingMachine from "./components/VendingMachine.vue";
+import VendingMachine from "./components/AppVendingMachine.vue";
 </script>
