@@ -6,13 +6,11 @@
       <h1 class="text-xl font-bold">Vending Machine</h1>
     </header>
 
-    <main class="border-2 border-black/80">
-      <div
-        class="min-h-[500px] max-h-[500px] overflow-auto grid grid-cols-1 sm:grid-cols-4"
-      >
+    <main class="border border-black/20">
+      <div class="grid grid-cols-1 sm:grid-cols-4">
         <!-- categories nav -->
         <nav
-          class="w-full h-fit sm:h-full px-3 py-2 overflow-auto bg-yellow-200 col-span-1"
+          class="min-h-fit sm:min-h-[500px] max-h-[500px] w-full px-3 py-2 overflow-auto bg-white border border-r-black/20 col-span-1"
         >
           <ul
             class="flex sm:flex-col gap-2 justify-start sm:justify-center items-center"
@@ -28,12 +26,17 @@
                   selectedCategory = category.id;
                 "
                 :class="[
-                  'text-center rounded-xl py-1 px-2 sm:p-3 w-fit sm:w-full h-fit hover:bg-blue-600 hover:text-white',
+                  'text-center border rounded-xl py-1 px-2 sm:p-3 w-fit sm:w-full h-fit hover:bg-gray-100 text-black flex flex-col items-center',
                   selectedCategory == category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-black',
+                    ? 'bg-gray-100  border-black/20'
+                    : 'bg-white ',
                 ]"
               >
+                <img
+                  class="w-8 h-8 sm:w-12 sm:h-12"
+                  :src="`src/assets/icons/${category.image_url}`"
+                  :alt="category.name"
+                />
                 {{ category.name }}
               </button>
             </li>
@@ -41,7 +44,7 @@
         </nav>
         <!-- products container -->
         <div
-          class="w-full min-h-[500px] max-h-[500px] col-span-3 overflow-auto bg-blue-200 px-3 pt-2 pb-4"
+          class="w-full min-h-[500px] max-h-[500px] col-span-3 overflow-auto bg-white px-3 pt-2 pb-4"
         >
           <ul class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-full">
             <li v-for="product in productsData.products" :key="product.id">
@@ -100,6 +103,7 @@ type Category = {
   id: number;
   name: string;
   description: string;
+  image_url: string;
 };
 
 const productsData = reactive<ProductsData>({

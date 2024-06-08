@@ -216,17 +216,20 @@
       {
         "id": 1,
         "name": "Beverages",
-        "description": "All kinds of beverages including sodas and juices."
+        "description": "All kinds of beverages including sodas and juices.",
+        "image_url": "beverages.svg"
       },
       {
         "id": 2,
         "name": "Snacks",
-        "description": "Various snacks including chips and chocolates."
+        "description": "Various snacks including chips and chocolates.",
+         "image_url": "snacks.svg"
       },
       {
         "id": 3,
         "name": "Healthy",
-        "description": "Healthy options including granola bars and fruits."
+        "description": "Healthy options including granola bars and fruits.",
+         "image_url": "healthy.svg"
       }
     ]
   }
