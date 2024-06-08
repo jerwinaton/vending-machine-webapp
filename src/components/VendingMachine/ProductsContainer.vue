@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full min-h-[500px] max-h-[500px] col-span-3 overflow-auto bg-white px-3 pt-2 pb-4"
+    class="w-full min-h-[400px] sm:min-h-[500px] max-h-[500px] col-span-3 overflow-auto bg-white px-3 pt-2 pb-4"
   >
     <ul class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-full">
       <li v-for="product in products" :key="product.id">

@@ -7,13 +7,13 @@ export const useCartStore = defineStore('cart', {
     items: [] as { product: Product; quantity: number }[], // array to store products and their quantities in the cart
   }),
   getters: {
-    totalItems() {
+    totalItems(state) {
       // Sum up all quantities
-      return this.items.reduce((total, item) => total + item.quantity, 0);
+      return state.items.reduce((total, item) => total + item.quantity, 0);
     },
-    totalPrice() {
+    totalPrice(state) {
       // Multiply price by quantity for each item and sum up
-      return this.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
+      return state.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
     },
   },
   actions: {
@@ -28,6 +28,10 @@ export const useCartStore = defineStore('cart', {
         // Otherwise, add new item to cart
         this.items.push({ product, quantity });
       }
+    },
+    //action to update the quantity of a product in the cart
+    updateQuantity(index: number, quantity: number) {
+      this.items[index].quantity = quantity;
     },
     // action to remove a product from the cart
     removeFromCart(index: number) {

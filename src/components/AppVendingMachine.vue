@@ -2,8 +2,21 @@
   <div
     class="place-self-center min-w-full sm:min-w-[36rem] max-w-sm sm:max-w-xl md:min-w-[42rem] md:max-w-2xl mx-2 rounded-xl border shadow overflow-hidden flex flex-col"
   >
-    <header class="px-2 md:px-4 py-5 vm-header h-14 bg-primary text-white">
-      <h1 class="text-xl font-bold">Vending Machine</h1>
+    <header
+      class="px-2 md:px-4 py-2 vm-header bg-primary text-white flex flex-col"
+    >
+      <h1 class="text-xl">Vending Machine</h1>
+      <div class="flex items-center justify-between">
+        <p class="text-2xl font-medium">
+          {{ formatAsMoney(cartStore.totalPrice) }}
+        </p>
+        <button
+          @click="() => (openCartModal = true)"
+          class="button w-fit flex items-center text-black bg-white hover:bg-gray-100"
+        >
+          <AkCart class="me-1" />Cart ({{ cartStore.totalItems }})
+        </button>
+      </div>
     </header>
 
     <main class="border border-black/20">
@@ -30,11 +43,15 @@
       </section>
     </footer>
     <!-- add to cart modal -->
-    <Modal
+    <ModalAddToCart
       v-if="modalProduct"
       :product="modalProduct"
-      @close="closeModal"
-      @add-to-cart="addToCart"
+      @close="closeAddToCartModal"
+      @add-to-cart="handleAddToCart"
+    />
+    <ModalCart
+      v-if="openCartModal"
+      @close="() => (openCartModal = !openCartModal)"
     />
   </div>
 </template>
@@ -43,9 +60,12 @@
 import { onMounted, reactive, ref } from "vue";
 import CategoriesNav from "@/components/VendingMachine/CategoriesNav.vue";
 import ProductsContainer from "@/components/VendingMachine/ProductsContainer.vue";
-import Modal from "@/components/VendingMachine/ModalAddToCart.vue";
+import ModalAddToCart from "@/components/VendingMachine/ModalAddToCart.vue";
+import ModalCart from "@/components/VendingMachine/ModalCart.vue";
+import { AkCart } from "@kalimahapps/vue-icons";
 import type { Category, Product } from "@/types/types";
 import { useCartStore } from "@/stores/cart";
+import formatAsMoney from "@/utils/formatAsMoney";
 
 //MAIN FUNCTIONALITY
 function getChange(bill: number, owed: number): Record<string, number> {
@@ -73,19 +93,6 @@ function getChange(bill: number, owed: number): Record<string, number> {
 
 const cartStore = useCartStore();
 
-const addToCart = (product: Product, quantity: number) => {
-  cartStore.addToCart(product, quantity); // call addToCart action from the cart store
-  // close the modal
-  closeModal();
-};
-
-const removeFromCart = (index: number) => {
-  cartStore.removeFromCart(index); // call removeFromCart action from the cart store
-};
-
-const clearCart = () => {
-  cartStore.clearCart(); // call clearCart action from the cart store
-};
 type ProductsData = {
   categories: Category[] | null;
   products: Product[] | null;
@@ -97,12 +104,15 @@ const productsData = reactive<ProductsData>({
 });
 
 const selectedCategory = ref(1);
+
+const openCartModal = ref(false);
 const modalProduct = ref<Product | null>(null);
+
 const openModal = (product: Product) => {
   modalProduct.value = product;
 };
 
-const closeModal = () => {
+const closeAddToCartModal = () => {
   modalProduct.value = null;
 };
 
@@ -130,6 +140,14 @@ const updateSelectedCategory = (categoryId: number) => {
 const handleProductSelected = (product: Product) => {
   openModal(product);
 };
+
+//cart functions
+const handleAddToCart = (product: Product, quantity: number) => {
+  cartStore.addToCart(product, quantity); // call addToCart action from the cart store
+  // close the modal
+  closeAddToCartModal();
+};
+
 onMounted(() => {
   fetchCategories();
   fetchProducts(selectedCategory.value);

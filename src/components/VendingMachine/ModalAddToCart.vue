@@ -8,13 +8,15 @@
       />
       <h2>{{ product?.name }}</h2>
       <p class="text-sm text-black/70 mb-1">{{ product?.description }}</p>
-      <p class="font-bold mb-1">Price: {{ formatAsMoney(product.price) }}</p>
+      <p class="font-bold mb-1">
+        Price: {{ formatAsMoney(product?.price ?? 0) }}
+      </p>
       <label for="quantity">Quantity</label>
       <input
         class="border border-primary px-2 py-1 rounded mb-4"
         id="quantity"
         type="number"
-        min="0"
+        min="1"
         :max="product?.stock"
         v-model="quantity"
       />
@@ -23,8 +25,15 @@
       </p>
       <!-- Display total price -->
       <div class="flex mt-auto gap-2 justify-center">
-        <button class="button" @click="$emit('close')">Cancel</button>
-        <button class="primary-button" @click="addToCart">Add to Cart</button>
+        <button
+          class="button bg-white hover:bg-gray-100 shadow"
+          @click="$emit('close')"
+        >
+          Cancel
+        </button>
+        <button class="primary-button shadow" @click="addToCart">
+          Add to Cart
+        </button>
       </div>
     </div>
   </div>
