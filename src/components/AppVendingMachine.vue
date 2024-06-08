@@ -1,16 +1,17 @@
 <template>
   <div
-    class="place-self-center min-w-full sm:min-w-[36rem] max-w-sm sm:max-w-xl md:min-w-[42rem] md:max-w-2xl mx-2 rounded-xl border shadow overflow-hidden flex flex-col"
+    class="place-self-center min-w-full sm:min-w-[36rem] max-w-sm sm:max-w-xl md:min-w-[42rem] md:max-w-2xl mx-2 rounded-xl shadow overflow-hidden flex flex-col"
   >
     <header
       class="px-2 md:px-4 py-2 vm-header bg-primary text-white flex flex-col"
     >
-      <h1 class="text-xl">Vending Machine</h1>
+      <h1 class="text-xl mb-1">Vending Machine</h1>
       <div class="flex items-center justify-between">
-        <p class="text-2xl font-medium">
+        <p class="text-2xl font-medium rounded-xl px-4 py-2 bg-black/10">
           {{ formatAsMoney(cartStore.totalPrice) }}
         </p>
         <button
+          v-if="!isCheckout"
           @click="() => (openCartModal = true)"
           class="button w-fit flex items-center text-black bg-white hover:bg-gray-100"
         >
@@ -19,8 +20,11 @@
       </div>
     </header>
 
-    <main class="border border-black/20">
-      <div class="grid grid-cols-1 sm:grid-cols-4">
+    <main class="border">
+      <div v-if="isCheckout">
+        <Checkout @back="isCheckout = false" />
+      </div>
+      <div v-else class="grid grid-cols-1 sm:grid-cols-4">
         <!-- categories nav -->
         <CategoriesNav
           :categories="productsData.categories"
@@ -38,9 +42,27 @@
     <footer
       class="px-2 md:px-5 py-10 h-14 bg-white bg-cover bg-center bg-no-repeat flex justify-between items-center"
     >
-      <section>
-        <button class="primary-button">Done</button>
-      </section>
+      <button
+        v-if="isCheckout"
+        @click="() => (isCheckout = false)"
+        class="button border-black flex items-center"
+      >
+        <CaPreviousFilled class="me-1 h-5 w-5" /> Back
+      </button>
+      <button
+        v-else
+        @click="handleCheckout"
+        class="primary-button flex items-center ms-auto"
+      >
+        Checkout <CaNextFilled class="ms-1 h-5 w-5" />
+      </button>
+      <button
+        v-if="isCheckout"
+        @click="handlePay"
+        class="primary-button flex items-center ms-auto"
+      >
+        Pay <AkMoney class="ms-1 h-5 w-5" />
+      </button>
     </footer>
     <!-- add to cart modal -->
     <ModalAddToCart
@@ -49,9 +71,11 @@
       @close="closeAddToCartModal"
       @add-to-cart="handleAddToCart"
     />
-    <ModalCart
-      v-if="openCartModal"
-      @close="() => (openCartModal = !openCartModal)"
+    <ModalCart v-if="openCartModal" @close="() => (openCartModal = false)" />
+    <ModalShowChange
+      :change="change"
+      v-if="showChange"
+      @close="() => (showChange = false)"
     />
   </div>
 </template>
@@ -62,10 +86,17 @@ import CategoriesNav from "@/components/VendingMachine/CategoriesNav.vue";
 import ProductsContainer from "@/components/VendingMachine/ProductsContainer.vue";
 import ModalAddToCart from "@/components/VendingMachine/ModalAddToCart.vue";
 import ModalCart from "@/components/VendingMachine/ModalCart.vue";
-import { AkCart } from "@kalimahapps/vue-icons";
+import {
+  AkCart,
+  AkMoney,
+  CaPreviousFilled,
+  CaNextFilled,
+} from "@kalimahapps/vue-icons";
 import type { Category, Product } from "@/types/types";
 import { useCartStore } from "@/stores/cart";
 import formatAsMoney from "@/utils/formatAsMoney";
+import Checkout from "@/components/VendingMachine/Checkout.vue";
+import ModalShowChange from "./VendingMachine/ModalShowChange.vue";
 
 //MAIN FUNCTIONALITY
 function getChange(bill: number, owed: number): Record<string, number> {
@@ -104,6 +135,9 @@ const productsData = reactive<ProductsData>({
 });
 
 const selectedCategory = ref(1);
+const isCheckout = ref(false);
+const showChange = ref(false);
+const change = ref<Record<string, number>>();
 
 const openCartModal = ref(false);
 const modalProduct = ref<Product | null>(null);
@@ -146,6 +180,29 @@ const handleAddToCart = (product: Product, quantity: number) => {
   cartStore.addToCart(product, quantity); // call addToCart action from the cart store
   // close the modal
   closeAddToCartModal();
+};
+
+//pay function
+const handleCheckout = () => {
+  if (cartStore.totalPrice === 0) return alert("Cart is empty");
+  isCheckout.value = true;
+  return;
+};
+
+//handle pay
+const handlePay = () => {
+  if (cartStore.totalPrice === 0) return alert("Cart is empty");
+
+  const bill = cartStore.selectedBill;
+  if (!bill) return alert("Select an amount");
+
+  const total = cartStore.totalPrice;
+  //check if bill is lower
+  if (bill < total) return alert("Insufficient funds!");
+
+  const owed = total;
+  change.value = getChange(bill, owed);
+  showChange.value = true;
 };
 
 onMounted(() => {

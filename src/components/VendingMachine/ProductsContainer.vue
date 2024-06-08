@@ -11,7 +11,7 @@
           class="bg-white h-full p-2 rounded-xl shadow flex flex-col items-center"
         >
           <img
-            class="w-full h-full"
+            class="w-20 h-20"
             src="/src/assets/logo.svg"
             :alt="product.name"
           />

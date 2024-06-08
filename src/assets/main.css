@@ -5,6 +5,11 @@
 .primary-button{
     @apply bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-xl;
 }
+
 .button{
     @apply  border py-2 px-4 rounded-xl ;
 }
+/* pushed down effect on buttons */
+.primary-button:active, .button:active, button:active {
+    transform: scale(.95); 
+  }

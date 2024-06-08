@@ -5,6 +5,7 @@ import type { Product } from '@/types/types';
 export const useCartStore = defineStore('cart', {
   state: () => ({
     items: [] as { product: Product; quantity: number }[], // array to store products and their quantities in the cart
+    selectedBill: null as number | null
   }),
   getters: {
     totalItems(state) {
