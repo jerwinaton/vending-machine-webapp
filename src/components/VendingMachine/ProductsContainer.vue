@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import type { Product } from "@/types/types";
+import formatAsMoney from "@/utils/formatAsMoney";
 
 defineProps({
   products: Array as () => Product[] | null,
@@ -36,13 +37,6 @@ const emit = defineEmits(["productSelected"]);
 
 const handleProductClick = (product: Product) => {
   emit("productSelected", product);
-};
-
-const formatAsMoney = (amount: number) => {
-  return new Intl.NumberFormat("en-PH", {
-    style: "currency",
-    currency: "PHP",
-  }).format(amount);
 };
 </script>
 
