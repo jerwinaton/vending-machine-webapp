@@ -1,0 +1,233 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Coca Cola",
+        "price": 22,
+        "description": "Refreshing cola beverage.",
+        "stock": 20,
+        "image_url": "https://example.com/images/coca_cola.jpg",
+        "category_id": 1
+      },
+      {
+        "id": 2,
+        "name": "Pepsi",
+        "price": 20,
+        "description": "Crisp and refreshing cola.",
+        "stock": 18,
+        "image_url": "https://example.com/images/pepsi.jpg",
+        "category_id": 1
+      },
+      {
+        "id": 3,
+        "name": "Orange Juice",
+        "price": 16,
+        "description": "Freshly squeezed orange juice.",
+        "stock": 10,
+        "image_url": "https://example.com/images/orange_juice.jpg",
+        "category_id": 1
+      },
+      {
+        "id": 4,
+        "name": "Lays Chips",
+        "price": 39,
+        "description": "Crispy and salty potato chips.",
+        "stock": 25,
+        "image_url": "https://example.com/images/lays_chips.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 5,
+        "name": "KitKat",
+        "price": 22,
+        "description": "Chocolate covered wafer bar.",
+        "stock": 30,
+        "image_url": "https://example.com/images/kitkat.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 6,
+        "name": "Pretzels",
+        "price": 25,
+        "description": "Crunchy and salty pretzels.",
+        "stock": 15,
+        "image_url": "https://example.com/images/pretzels.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 7,
+        "name": "Granola Bar",
+        "price": 25,
+        "description": "Healthy and nutritious granola bar.",
+        "stock": 12,
+        "image_url": "https://example.com/images/granola_bar.jpg",
+        "category_id": 3
+      },
+      {
+        "id": 8,
+        "name": "Mixed Nuts",
+        "price": 15,
+        "description": "A mix of various healthy nuts.",
+        "stock": 20,
+        "image_url": "https://example.com/images/mixed_nuts.jpg",
+        "category_id": 3
+      },
+      {
+        "id": 9,
+        "name": "Fruit Cup",
+        "price": 45,
+        "description": "Fresh mixed fruit cup.",
+        "stock": 8,
+        "image_url": "https://example.com/images/fruit_cup.jpg",
+        "category_id": 3
+      },
+      {
+        "id": 10,
+        "name": "Sprite",
+        "price": 20,
+        "description": "Lemon-lime flavored soda.",
+        "stock": 22,
+        "image_url": "https://example.com/images/sprite.jpg",
+        "category_id": 1
+      },
+      {
+        "id": 11,
+        "name": "Doritos",
+        "price": 40,
+        "description": "Crunchy corn chips.",
+        "stock": 28,
+        "image_url": "https://example.com/images/doritos.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 12,
+        "name": "M&Ms",
+        "price": 13,
+        "description": "Colorful candy-coated chocolates.",
+        "stock": 18,
+        "image_url": "https://example.com/images/mms.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 13,
+        "name": "Apple Juice",
+        "price": 18,
+        "description": "Sweet and refreshing apple juice.",
+        "stock": 15,
+        "image_url": "https://example.com/images/apple_juice.jpg",
+        "category_id": 1
+      },
+      {
+        "id": 14,
+        "name": "Almonds",
+        "price": 24,
+        "description": "Nutritious and delicious almonds.",
+        "stock": 10,
+        "image_url": "https://example.com/images/almonds.jpg",
+        "category_id": 3
+      },
+      {
+        "id": 15,
+        "name": "Water",
+        "price": 15,
+        "description": "Refreshing bottled water.",
+        "stock": 40,
+        "image_url": "https://example.com/images/water.jpg",
+        "category_id": 1
+      },
+      {
+        "id": 16,
+        "name": "Twix",
+        "price": 42,
+        "description": "Caramel and biscuit chocolate bar.",
+        "stock": 25,
+        "image_url": "https://example.com/images/twix.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 17,
+        "name": "Banana Chips",
+        "price": 24,
+        "description": "Crispy dried banana slices.",
+        "stock": 15,
+        "image_url": "https://example.com/images/banana_chips.jpg",
+        "category_id": 2
+      },
+      {
+        "id": 18,
+        "name": "Trail Mix",
+        "price": 20,
+        "description": "A mix of nuts, seeds, and dried fruits.",
+        "stock": 12,
+        "image_url": "https://example.com/images/trail_mix.jpg",
+        "category_id": 3
+      },
+      {
+        "id": 19,
+        "name": "Soda Water",
+        "price": 15,
+        "description": "Carbonated water.",
+        "stock": 30,
+        "image_url": "https://example.com/images/soda_water.jpg",
+        "category_id": 1
+      }
+      ,
+      {
+        "id": 20,
+        "name": "Chocolate Bar",
+        "price": 25,
+        "description": "Classic chocolate bar.",
+        "stock": 20,
+        "image_url": "https://example.com/images/chocolate_bar.jpg",
+        "category_id": 2
+      }
+      ,
+      {
+        "id": 21,
+        "name": "Chocolate Bar",
+        "price": 25,
+        "description": "Classic chocolate bar.",
+        "stock": 20,
+        "image_url": "https://example.com/images/chocolate_bar.jpg",
+        "category_id": 2
+      }
+      ,
+      {
+        "id": 22,
+        "name": "Chocolate Bar",
+        "price": 25,
+        "description": "Classic chocolate bar.",
+        "stock": 20,
+        "image_url": "https://example.com/images/chocolate_bar.jpg",
+        "category_id": 2
+      }
+      ,
+      {
+        "id": 23,
+        "name": "Chocolate Bar",
+        "price": 25,
+        "description": "Classic chocolate bar.",
+        "stock": 20,
+        "image_url": "https://example.com/images/chocolate_bar.jpg",
+        "category_id": 2
+      }
+    ],
+    "categories": [
+      {
+        "id": 1,
+        "name": "Beverages",
+        "description": "All kinds of beverages including sodas and juices."
+      },
+      {
+        "id": 2,
+        "name": "Snacks",
+        "description": "Various snacks including chips and chocolates."
+      },
+      {
+        "id": 3,
+        "name": "Healthy",
+        "description": "Healthy options including granola bars and fruits."
+      }
+    ]
+  }
+  
